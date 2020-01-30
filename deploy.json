@@ -20,7 +20,7 @@
     },
     "ServerAdminKeyfileName": {
       "type": "string",
-    "defaultValue": "Keyfile.dbk"
+      "defaultValue": "Keyfile.dbk"
     },
     "ServerAdminKeyName": {
       "type": "string",
@@ -88,6 +88,7 @@
     }
   },
   "variables": {
+    "configScriptUrl": "https://dl.dropbox.com/s/ag7iipbkmu7ai3c/config.ps1",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "myVMNic",
     "addressPrefix": "10.0.0.0/16",
@@ -251,6 +252,30 @@
         }
       }
     }
+
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "BinManaController/installBinMana",
+      "apiVersion": "2015-06-15",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "VMExtensionsLoop"
+      ],
+      "properties": {
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "fileUris": [
+            "[variables('configScriptUrl')]"
+          ],
+          "commandToExecute": "[concat('PowerShell ', variables('configScriptUrl'), ' -Keyfile \"', parameters('ServerAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName BS.8.5 -SqlUser \"', parameters('DatabaseUsername'), '\" -SqlUserPwd \"', parameters('DatabasePassword'), '\"')]",
+          "protectedSettings": {}
+        }
+      }
+    }
+
   ],
   "outputs": {
     "hostname": {
