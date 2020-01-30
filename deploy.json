@@ -3,46 +3,51 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
 
-    "Keyfile": {
-      "type": "string",
-      "metadata": {
-        "description": "Keyfile name."
-      }
-    },
-
-    "AdminId": {
+    "BitMana Admin Username": {
       "type": "string",
       "metadata": {
         "description": "The username for the BinMana Server administrator's account."
       }
     },
 
-    "KeyfilePwd": {
+    "BitMana Admin Password": {
       "type": "string",
       "metadata": {
         "description": "The password for the BinMana Server administrator's account."
       }
     },
 
-    "KeyName": {
+    "Confirm BitMana Admin Password": {
+      "type": "string",
+    },
+
+    "BitMana Admin Keyfile name": {
+      "type": "string",
+    },
+
+    "BitMana Admin Key Name": {
       "type": "string",
       "metadata": {
         "description": "BinMana server protection key label."
       }
     },
 
-    "SqlUser": {
+    "Database Username": {
       "type": "string",
       "metadata": {
         "description": "The username for the dedicated database user."
       }
     },
 
-    "SqlUserPwd": {
+    "Database Password": {
       "type": "string",
       "metadata": {
         "description": "The password for the dedicated database user."
       }
+    },
+
+    "Confirm Database Password": {
+      "type": "string",
     },
    
     "adminUsername": {
@@ -95,6 +100,7 @@
     }
   },
   "variables": {
+    "BitMana Admin Keyfile name": "Keyfile.dbk",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "myVMNic",
     "addressPrefix": "10.0.0.0/16",
