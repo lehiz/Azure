@@ -2,6 +2,49 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+
+    "Keyfile": {
+      "type": "string",
+      "metadata": {
+        "description": "Keyfile name."
+      }
+    },
+
+    "AdminId": {
+      "type": "string",
+      "metadata": {
+        "description": "The username for the BinMana Server administrator's account."
+      }
+    },
+
+    "KeyfilePwd": {
+      "type": "string",
+      "metadata": {
+        "description": "The password for the BinMana Server administrator's account."
+      }
+    },
+
+    "KeyName": {
+      "type": "string",
+      "metadata": {
+        "description": "BinMana server protection key label."
+      }
+    },
+
+    "SqlUser": {
+      "type": "string",
+      "metadata": {
+        "description": "The username for the dedicated database user."
+      }
+    },
+
+    "SqlUserPwd": {
+      "type": "string",
+      "metadata": {
+        "description": "The password for the dedicated database user."
+      }
+    },
+   
     "adminUsername": {
       "type": "string",
       "metadata": {
