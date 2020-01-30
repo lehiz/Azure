@@ -3,60 +3,45 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
 
-    "BitManaAdminUsername": {
+    "ServerAdminUsername": {
       "type": "string",
       "metadata": {
-        "description": "The username for the BinMana Server administrator's account."
+          "description": "The username for the BinMana Server administrator's account."
       }
     },
-
-    "BitManaAdminPassword": {
+    "ServerAdminPassword": {
       "type": "string",
       "metadata": {
-        "description": "The password for the BinMana Server administrator's account."
+          "description": "The password for the BinMana Server administrator's account."
       }
     },
-
-    "ConfirmBitManaAdminPassword": {
+    "ConfirmServerAdminPassword": {
+      "type": "string"
+    },
+    "ServerAdminKeyfileName": {
+      "type": "string",
+    "defaultValue": "Keyfile.dbk"
+    },
+    "ServerAdminKeyName": {
       "type": "string",
       "metadata": {
-        "description": ""
+          "description": "BinMana server protection key label."
       }
     },
-
-    "BitManaAdminKeyfileName": {
-      "type": "string",
-      "metadata": {
-        "description": ""
-      }
-    },
-
-    "BitManaAdminKeyName": {
-      "type": "string",
-      "metadata": {
-        "description": "BinMana server protection key label."
-      }
-    },
-
     "DatabaseUsername": {
       "type": "string",
       "metadata": {
-        "description": "The username for the dedicated database user."
+          "description": "The username for the dedicated database user."
       }
     },
-
     "DatabasePassword": {
       "type": "string",
       "metadata": {
-        "description": "The password for the dedicated database user."
+          "description": "The password for the dedicated database user."
       }
     },
-
     "ConfirmDatabasePassword": {
-      "type": "string",
-      "metadata": {
-        "description": ""
-      }
+      "type": "string"
     },
    
     "adminUsername": {
@@ -79,18 +64,12 @@
     },
     "windowsOSVersion": {
       "type": "string",
-      "defaultValue": "2016-Datacenter",
+      "defaultValue": "Enterprise",
       "allowedValues": [
-        "2008-R2-SP1",
-        "2012-Datacenter",
-        "2012-R2-Datacenter",
-        "2016-Nano-Server",
-        "2016-Datacenter-with-Containers",
-        "2016-Datacenter",
-        "2019-Datacenter"
+          "Enterprise"
       ],
       "metadata": {
-        "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
+          "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
       }
     },
     "vmSize": {
@@ -109,7 +88,6 @@
     }
   },
   "variables": {
-    "BitManaAdminKeyfileName": "Keyfile.dbk",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "myVMNic",
     "addressPrefix": "10.0.0.0/16",
