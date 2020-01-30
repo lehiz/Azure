@@ -18,11 +18,17 @@
     },
 
     "Confirm BitMana Admin Password": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": ""
+      }
     },
 
     "BitMana Admin Keyfile name": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": ""
+      }
     },
 
     "BitMana Admin Key Name": {
@@ -47,7 +53,10 @@
     },
 
     "Confirm Database Password": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": ""
+      }
     },
    
     "adminUsername": {
