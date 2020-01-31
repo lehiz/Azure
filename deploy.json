@@ -16,7 +16,7 @@
       }
     },
     "ConfirmServerAdminPassword": {
-      "type": "string"
+      "type": "securestring"
     },
     "ServerAdminKeyfileName": {
       "type": "string",
@@ -27,23 +27,7 @@
       "metadata": {
           "description": "BinMana server protection key label."
       }
-    },
-    "DatabaseUsername": {
-      "type": "string",
-      "metadata": {
-          "description": "The username for the dedicated database user."
-      }
-    },
-    "DatabasePassword": {
-      "type": "securestring",
-      "metadata": {
-          "description": "The password for the dedicated database user."
-      }
-    },
-    "ConfirmDatabasePassword": {
-      "type": "string"
-    },
-   
+    }, 
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -258,7 +242,7 @@
           "fileUris": [
             "[variables('configScriptUrl')]"
           ],
-          "commandToExecute": "[concat('PowerShell ', variables('configScriptUrl'), ' -Keyfile \"', parameters('ServerAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName BS.8.5 -SqlUser \"', parameters('DatabaseUsername'), '\" -SqlUserPwd \"', parameters('DatabasePassword'), '\"')]",
+          "commandToExecute": "[concat('PowerShell ', variables('configScriptUrl'), ' -Keyfile \"', parameters('ServerAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName BS.8.5 -WinAuth')]",
           "protectedSettings": {}
         }
       }
