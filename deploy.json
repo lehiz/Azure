@@ -10,7 +10,7 @@
       }
     },
     "ServerAdminPassword": {
-      "type": "string",
+      "type": "securestring",
       "metadata": {
           "description": "The password for the BinMana Server administrator's account."
       }
@@ -35,7 +35,7 @@
       }
     },
     "DatabasePassword": {
-      "type": "string",
+      "type": "securestring",
       "metadata": {
           "description": "The password for the dedicated database user."
       }
@@ -251,16 +251,12 @@
           }
         }
       }
-    }
-
+    },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "BinManaController/installBinMana",
       "apiVersion": "2015-06-15",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "VMExtensionsLoop"
-      ],
+      "location": "[parameters('location')]", 
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
