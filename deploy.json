@@ -18,7 +18,7 @@
     "ConfirmServerAdminPassword": {
       "type": "securestring"
     },
-    "ServerAdminKeyfileName": {
+    "DatabaseAdminKeyfileName": {
       "type": "string",
       "defaultValue": "Keyfile.dbk"
     },
@@ -26,6 +26,12 @@
       "type": "string",
       "metadata": {
           "description": "BinMana server protection key label."
+      }
+    }, 
+    "DatabaseName": {
+      "type": "string",
+      "metadata": {
+          "description": "Name for SQL Server database beying created."
       }
     }, 
     "adminUsername": {
@@ -242,7 +248,7 @@
           "fileUris": [
             "[variables('configScriptUrl')]"
           ],
-          "commandToExecute": "[concat('PowerShell ', variables('configScriptUrl'), ' -Keyfile \"', parameters('ServerAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName BS.8.5 -WinAuth')]",
+          "commandToExecute": "[concat('PowerShell ', variables('configScriptUrl'), ' -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -WinAuth')]",
           "protectedSettings": {}
         }
       }
