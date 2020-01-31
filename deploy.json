@@ -62,16 +62,6 @@
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
-    "windowsOSVersion": {
-      "type": "string",
-      "defaultValue": "Enterprise",
-      "allowedValues": [
-          "Enterprise"
-      ],
-      "metadata": {
-          "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
-      }
-    },
     "vmSize": {
       "type": "string",
       "defaultValue": "Standard_A2_v2",
@@ -220,12 +210,14 @@
           "adminPassword": "[parameters('adminPassword')]"
         },
         "storageProfile": {
+          
           "imageReference": {
-            "publisher": "MicrosoftWindowsServer",
-            "offer": "WindowsServer",
-            "sku": "[parameters('windowsOSVersion')]",
+            "publisher": "MicrosoftSQLServer",
+            "offer": "sql2014sp3-ws2012r2",
+            "sku": "express",
             "version": "latest"
           },
+
           "osDisk": {
             "createOption": "FromImage"
           },
