@@ -94,7 +94,7 @@
     "virtualNetworkName": "MyVNET",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "networkSecurityGroupName": "default-NSG",
-    "sqlserverName": "[concat('SqlServer', uniqueString(resourceGroup().id))]"
+    "sqlserverName": "sql-server"
   },
   "resources": [
     {
@@ -251,16 +251,17 @@
       }
     },
     {
-      "apiVersion": "2014-04-01",
-      "name": "[variables('sqlserverName')]",
       "type": "Microsoft.Sql/servers",
+      "apiVersion": "2015-05-01-preview",
+      "name": "[variables('sqlserverName')]",
       "location": "[resourceGroup().location]",
       "properties": {
         "administratorLogin": "[parameters('DatabaseUsername')]",
-        "administratorLoginPassword": "[parameters('DatabasePassword')]"
+        "administratorLoginPassword": "[parameters('DatabasePassword')]",
+        "version": "12.0"
       },
       "tags": {
-        "displayName": "SqlServer"
+        "displayName": "[parameters('sqlServerName')]"
       }
     },
     {
