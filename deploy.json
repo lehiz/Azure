@@ -28,6 +28,21 @@
           "description": "BinMana server protection key label."
       }
     }, 
+    "DatabaseUsername": {
+      "type": "string",
+      "metadata": {
+          "description": "The username for the dedicated database user."
+      }
+    },
+    "DatabasePassword": {
+      "type": "securestring",
+      "metadata": {
+          "description": "The password for the dedicated database user."
+      }
+    },
+    "ConfirmDatabasePassword": {
+      "type": "securestring"
+    },
     "DatabaseName": {
       "type": "string",
       "metadata": {
@@ -78,7 +93,8 @@
     "vmName": "BitManaServerVM",
     "virtualNetworkName": "MyVNET",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "networkSecurityGroupName": "default-NSG"
+    "networkSecurityGroupName": "default-NSG",
+    "sqlserverName": "[concat('SqlServer', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
@@ -235,6 +251,19 @@
       }
     },
     {
+      "apiVersion": "2014-04-01",
+      "name": "[variables('sqlserverName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "administratorLogin": "[parameters('DatabaseUsername')]",
+        "administratorLoginPassword": "[parameters('DatabasePassword')]"
+      },
+      "tags": {
+        "displayName": "SqlServer"
+      }
+    },
+    {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(variables('vmName'), '/CustomScriptExtension')]",
       "dependsOn": [
@@ -254,11 +283,10 @@
                   "fileUris": [
                       "[variables('configScriptUrl')]"
                   ],
-                  "commandToExecute": "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -WinAuth')]"
+                  "commandToExecute": 
+                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -SqlUser \"', parameters('DatabaseUsername'), '\"  -SqlUserPwd \"', parameters('DatabasePassword'), '\"')]"
               },
-              "protectedSettings": {
-                "storageAccountName": "[parameters('adminUsername')]"
-              }
+              "protectedSettings": {}
           }
     }
   ],
