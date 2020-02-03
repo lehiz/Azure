@@ -75,7 +75,7 @@
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
     "publicIPAddressName": "myPublicIP",
-    "vmName": "SimpleWinVM",
+    "vmName": "BitManaServerVM",
     "virtualNetworkName": "MyVNET",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "networkSecurityGroupName": "default-NSG"
@@ -236,24 +236,25 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "BinManaController/installBinMana",
-      "apiVersion": "2015-06-15",     
+      "name": "[concat(variables('vmName'), '/CustomScriptExtension')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
+      ],
+      "apiVersion": "2018-10-01",     
       "location": "[parameters('location')]", 
       "properties": {
               "publisher": "Microsoft.Compute",
               "type": "CustomScriptExtension",
-              "typeHandlerVersion": "1.10",
+              "typeHandlerVersion": "1.7",
               "autoUpgradeMinorVersion": true,
               "settings": {
                   "fileUris": [
                       "[variables('configScriptUrl')]"
                   ],
+                  "commandToExecute": "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -WinAuth')]",
                   "timestamp":123456789
               },
-              "protectedSettings": {
-                  "commandToExecute": "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -WinAuth')]",
-                  "managedIdentity" : {}
-              }
+              "protectedSettings": {}
           }
     }
   ],
