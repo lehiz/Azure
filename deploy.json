@@ -236,7 +236,7 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "installBinMana",
+      "name": "BinManaController/installBinMana",
       "apiVersion": "2015-06-15",     
       "location": "[parameters('location')]", 
       "properties": {
@@ -251,7 +251,7 @@
                   "timestamp":123456789
               },
               "protectedSettings": {
-                  "commandToExecute": "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass ./config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -WinAuth')]",
+                  "commandToExecute": "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -WinAuth')]",
                   "managedIdentity" : {}
               }
           }
