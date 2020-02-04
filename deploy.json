@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
 
@@ -28,21 +28,6 @@
           "description": "BinMana server protection key label."
       }
     }, 
-    "DatabaseUsername": {
-      "type": "string",
-      "metadata": {
-          "description": "The username for the dedicated database user."
-      }
-    },
-    "DatabasePassword": {
-      "type": "securestring",
-      "metadata": {
-          "description": "The password for the dedicated database user."
-      }
-    },
-    "ConfirmDatabasePassword": {
-      "type": "securestring"
-    },
     "DatabaseName": {
       "type": "string",
       "metadata": {
@@ -219,7 +204,7 @@
           
           "imageReference": {
             "publisher": "MicrosoftSQLServer",
-            "offer": "sql2014sp3-ws2012r2",
+            "offer": "SQL2016SP1-WS2016",
             "sku": "express",
             "version": "latest"
           },
@@ -249,21 +234,7 @@
           }
         }
       }
-    },
-    {
-      "type": "Microsoft.Sql/servers",
-      "apiVersion": "2015-05-01-preview",
-      "name": "[variables('sqlserverName')]",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "administratorLogin": "[parameters('DatabaseUsername')]",
-        "administratorLoginPassword": "[parameters('DatabasePassword')]",
-        "version": "12.0"
-      },
-      "tags": {
-        "displayName": "[variables('sqlServerName')]"
-      }
-    },
+    },  
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(variables('vmName'), '/CustomScriptExtension')]",
@@ -285,7 +256,7 @@
                       "[variables('configScriptUrl')]"
                   ],
                   "commandToExecute": 
-                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -SqlUser \"', parameters('DatabaseUsername'), '\"  -SqlUserPwd \"', parameters('DatabasePassword'), '\"')]"
+                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), ' -WinAuth')]"
               },
               "protectedSettings": {}
           }
