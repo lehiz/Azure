@@ -69,6 +69,7 @@
   },
   "variables": {
     "configScriptUrl": "https://dl.dropbox.com/s/ag7iipbkmu7ai3c/config.ps1",
+    "startScriptUrl": "https://dl.dropbox.com/s/e7gsx45rbakxpb4/start.ps1",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "myVMNic",
     "addressPrefix": "10.0.0.0/16",
@@ -253,10 +254,11 @@
               "autoUpgradeMinorVersion": true,
               "settings": {
                   "fileUris": [
+                      "[variables('startScriptUrl')]",
                       "[variables('configScriptUrl')]"
                   ],
                   "commandToExecute": 
-                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File config.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), ' -WinAuth')]"
+                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('adminUsername'), '\" -OsUserPwd \"', parameters('adminPassword'), '\"')]"
               },
               "protectedSettings": {}
           }
