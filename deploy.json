@@ -130,7 +130,7 @@
           {
             "name": "default-allow-443",
             "properties": {
-              "priority": 1000,
+              "priority": 900,
               "access": "Allow",
               "direction": "Inbound",
               "destinationPortRange": "443",
@@ -143,7 +143,7 @@
           {
             "name": "default-allow-7300",
             "properties": {
-              "priority": 1000,
+              "priority": 800,
               "access": "Allow",
               "direction": "Inbound",
               "destinationPortRange": "7300",
