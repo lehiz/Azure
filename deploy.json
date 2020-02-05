@@ -205,7 +205,7 @@
           
           "imageReference": {
             "publisher": "MicrosoftSQLServer",
-            "offer": "SQL2016SP1-WS2016",
+            "offer": "sql2017-WS2019",
             "sku": "express",
             "version": "latest"
           },
