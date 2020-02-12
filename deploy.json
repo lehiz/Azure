@@ -10,10 +10,10 @@
       }
     },
 
-    "VMAdmin": { 
+    "VM Admin": { 
       "type": "string"
     },
-
+    
     "DNS Label Prefix": {
       "type": "string",
       "metadata": {
