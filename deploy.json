@@ -6,13 +6,13 @@
     "ServerAdminUsername": {
       "type": "string",
       "metadata": {
-          "description": "The username for the BinMana Server administrator's account."
+          "description": "The username for the BitMana Server administrator's account."
       }
     },
     "ServerAdminPassword": {
       "type": "securestring",
       "metadata": {
-          "description": "The password for the BinMana Server administrator's account."
+          "description": "The password for the BitMana Server administrator's account."
       }
     },
     "ConfirmServerAdminPassword": {
@@ -25,7 +25,7 @@
     "ServerAdminKeyName": {
       "type": "string",
       "metadata": {
-          "description": "BinMana server protection key label."
+          "description": "BitMana server protection key label."
       }
     }, 
     "DatabaseName": {
@@ -230,7 +230,7 @@
         "storageProfile": {
           
           "imageReference": {
-            "id": "BitManaSrv-image-20200212210616"            
+            "id": "/subscriptions/340161be-f930-4356-9137-69f068b3231b/resourceGroups/TestVM2/providers/Microsoft.Compute/images/BitManaSrv-image-20200212210616"            
           },          
 
           "osDisk": {
