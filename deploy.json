@@ -35,20 +35,20 @@
         "description": "Location for all resources."
       }
     },
-    "BitMana Admin User Name": {
+    "BM Admin User Name": {
       "type": "string",
       "defaultValue": "BMAdmin",      
       "metadata": {
           "description": "The username for the BitMana Server administrator's account."
       }
     },
-    "BitMana Admin Password": {
+    "BM Admin Password": {
       "type": "securestring",
       "metadata": {
           "description": "The password for the BitMana Server administrator's account."
       }
     },
-    "Confirm BitMana Admin Password": {
+    "Confirm BM Admin Password": {
       "type": "securestring"
     },
     "DatabaseAdminKeyfileName": {
@@ -283,11 +283,12 @@
                   "fileUris": [
                       "[variables('startScriptUrl')]",
                       "[variables('configScriptUrl')]"
-                  ],
-                  "commandToExecute": 
-                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('BitMana Admin Password'), '\" -AdminId \"', parameters('BitMana Admin User Name'), '\" -KeyName \"', parameters('DB Protection Key Name'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('VM Admin Username'), '\" -OsUserPwd \"', parameters('VM Admin Password'), '\"')]"
+                  ]
               },
-              "protectedSettings": {}
+              "protectedSettings": {
+                  "commandToExecute": 
+                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('BM Admin Password'), '\" -AdminId \"', parameters('BM Admin User Name'), '\" -KeyName \"', parameters('DB Protection Key Name'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('VM Admin Username'), '\" -OsUserPwd \"', parameters('VM Admin Password'), '\"')]"
+              }
           }
     }
   ],
