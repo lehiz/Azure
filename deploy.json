@@ -230,20 +230,16 @@
         "storageProfile": {
           
           "imageReference": {
-            "publisher": "MicrosoftSQLServer",
-            "offer": "sql2017-WS2019",
-            "sku": "express",
-            "version": "latest"
-          },
+            "id": "BitManaSrv-image-20200212210616"            
+          },          
 
           "osDisk": {
             "createOption": "FromImage"
           },
           "dataDisks": [
             {
-              "diskSizeGB": 1023,
               "lun": 0,
-              "createOption": "Empty"
+              "createOption": "FromImage"
             }
           ]
         },
