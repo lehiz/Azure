@@ -11,7 +11,10 @@
     },
 
     "VM Admin Password": { 
-      "type": "string"
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
     },
     
     "DNS Label Prefix": {
