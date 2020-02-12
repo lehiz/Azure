@@ -9,7 +9,7 @@
         "description": "Username for the Virtual Machine."
       }
     },
-    "VM Admin": {
+    "VM Admin": { 
       "type": "string"
     },
     "DNS Label Prefix": {
