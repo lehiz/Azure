@@ -240,6 +240,10 @@
             {
               "lun": 0,
               "createOption": "FromImage"
+            },
+            {
+              "lun": 1,
+              "createOption": "FromImage"
             }
           ]
         },
