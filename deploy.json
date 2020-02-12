@@ -54,7 +54,8 @@
     },
     "vmSize": {
       "type": "string",
-      "defaultValue": "Standard_A2_v2",
+      "defaultValue": "Standard_B2s",
+      
       "metadata": {
         "description": "Size of the virtual machine."
       }
@@ -79,8 +80,7 @@
     "vmName": "BitManaServerVM",
     "virtualNetworkName": "MyVNET",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "networkSecurityGroupName": "default-NSG",
-    "sqlserverName": "[concat('SqlServer', uniqueString(resourceGroup().id))]"
+    "networkSecurityGroupName": "default-NSG"
   },
   "resources": [
     {
