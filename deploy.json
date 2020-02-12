@@ -20,10 +20,11 @@
     },
     "DatabaseAdminKeyfileName": {
       "type": "string",
-      "defaultValue": "Keyfile.dbk"
+      "defaultValue": "BitMana.dbk"
     },
-    "ServerAdminKeyName": {
+    "DB Protection Key Name": {
       "type": "string",
+      "defaultValue": "BitMana",     
       "metadata": {
           "description": "BitMana server protection key label."
       }
@@ -284,7 +285,7 @@
                       "[variables('configScriptUrl')]"
                   ],
                   "commandToExecute": 
-                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('ServerAdminKeyName'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('adminUsername'), '\" -OsUserPwd \"', parameters('adminPassword'), '\"')]"
+                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('ServerAdminPassword'), '\" -AdminId \"', parameters('ServerAdminUsername'), '\" -KeyName \"', parameters('DB Protection Key Name'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('adminUsername'), '\" -OsUserPwd \"', parameters('adminPassword'), '\"')]"
               },
               "protectedSettings": {}
           }
