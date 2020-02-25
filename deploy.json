@@ -290,7 +290,7 @@
               },
               "protectedSettings": {
                   "commandToExecute": 
-                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('BM Admin Password'), '\" -AdminId \"', parameters('BM Admin User Name'), '\" -KeyName \"', parameters('DB Protection Key Name'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('VM Admin Username'), '\" -OsUserPwd \"', parameters('VM Admin Password'), '\"')]"
+                    "[concat('PowerShell -NonInteractive -ExecutionPolicy bypass -File start.ps1 -Keyfile \"', parameters('DatabaseAdminKeyfileName'), '\" -KeyfilePwd \"', parameters('BM Admin Password'), '\" -AdminId \"', parameters('BM Admin User Name'), '\" -ExtIP \"', parameters('DNS Label Prefix'), '\" -KeyName \"', parameters('DB Protection Key Name'), '\" -DbHost 127.0.0.1 -DbName \"', parameters('DatabaseName'), '\" -OsUser \"', parameters('VM Admin Username'), '\" -OsUserPwd \"', parameters('VM Admin Password'), '\"')]"
               }
           }
     }
