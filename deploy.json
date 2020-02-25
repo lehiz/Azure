@@ -234,7 +234,7 @@
         "storageProfile": {
           
           "imageReference": { 
-            "id": "/subscriptions/340161be-f930-4356-9137-69f068b3231b/resourceGroups/TestVM5/providers/Microsoft.Compute/images/BitManaSrv-image-20200214110729"
+            "id": "/subscriptions/4f6dbf0b-61e8-4a35-809c-dd9546123493/resourceGroups/Test2/providers/Microsoft.Compute/images/BitManaSrv-image-20200226001758"
           },          
 
           "osDisk": {
